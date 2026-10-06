@@ -213,7 +213,3 @@ A defensible comparison should freeze the corpus and query set, report query-lev
 - The API indexes the corpus during application startup. Streamlit also constructs its own retrieval engine, so running both services duplicates model loading and indexing work.
 - Cross-encoder availability depends on successfully loading the Hugging Face model. The reranker falls back to hybrid-score ordering if initialization fails.
 - First startup requires access to Hugging Face model artifacts unless they are already cached.
-
-## License and Data
-
-No license file is currently included. Confirm rights and licensing for the source budget and election data before redistributing this repository or its derived corpus.
