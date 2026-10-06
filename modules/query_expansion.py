@@ -1,8 +1,9 @@
 """
-MODULE 4: Query Expansion
+Query Expansion
 Expands queries to improve recall
 """
 
+import re
 from typing import List
 
 
@@ -39,10 +40,15 @@ class QueryExpander:
             if word in query_lower:
                 for syn in syns[:2]:
                     expanded.append(query.replace(word, syn))
+
+        if "education" in query_lower and any(term in query_lower for term in ("budget", "allocat", "spend")):
+            year = re.search(r"\b20\d{2}\b", query_lower)
+            if year:
+                expanded.append(f"Ministry of Education {year.group()} Social Sector GOG")
         
         # Domain expansion
         for domain, terms in self.domain_terms.items():
             if any(t in query_lower for t in terms[:2]):
                 expanded.append(f"{query} {' '.join(terms[:3])}")
         
-        return list(set(expanded))[:5]
+        return list(dict.fromkeys(expanded))[:5]

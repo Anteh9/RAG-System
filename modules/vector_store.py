@@ -1,5 +1,5 @@
 """
-MODULE 3: Vector Store
+Vector Store
 ChromaDB wrapper for persistent vector storage
 """
 
@@ -29,7 +29,10 @@ class VectorStore:
         except:
             pass
         
-        self.collection = self.client.create_collection(name=collection_name)
+        self.collection = self.client.create_collection(
+            name=collection_name,
+            metadata={"hnsw:space": "cosine"},
+        )
         self.chunks = {}  # Local cache
         print(f"[VECTOR STORE] Collection '{collection_name}' ready (in-memory)")
     
@@ -87,7 +90,7 @@ class VectorStore:
             docs.append({
                 'id': results['ids'][0][i],
                 'text': results['documents'][0][i],
-                'score': results['distances'][0][i],
+                'score': max(0.0, 1.0 - results['distances'][0][i]),
                 'metadata': results['metadatas'][0][i]
             })
         

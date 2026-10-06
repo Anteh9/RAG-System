@@ -1,0 +1,13 @@
+# Python environments and bytecode
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local configuration and caches
+.env
+.streamlit/secrets.toml
+.cache/
+
+# Generated local vector database (the app rebuilds an in-memory index)
+chroma_db/

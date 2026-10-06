@@ -1,5 +1,5 @@
 """
-MODULE 2: Embedding Pipeline
+Embedding Pipeline
 Generates embeddings using Sentence Transformers
 """
 

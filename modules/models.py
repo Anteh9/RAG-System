@@ -1,5 +1,5 @@
 """
-MODULE 1: Data Models
+Data Models
 Core data structures used across all modules
 """
 
